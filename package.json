@@ -1,0 +1,23 @@
+{
+  "name": "iwa-a",
+  "version": "0.0.1",
+  "description": "my first test iwa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maicondublin/iwa-a.git"
+  },
+  "author": "Maicon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maicondublin/iwa-a/issues"
+  },
+  "homepage": "https://github.com/maicondublin/iwa-a#readme",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
