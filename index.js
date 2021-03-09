@@ -8,19 +8,22 @@ bodyParser = require('body-parser');
 var app = express();
 var port = 8000;
 
+//middleware line 12/13
 app.use(bodyParser.json()) //json and parser 
-app.use(logger('tiny'));
+app.use(logger('tiny')); // logger for "morgan" i think
+app.use(require('./routes'));// routes on the routes.js file
+//routing line 17 to 24 
 //end point line 14 
-app.get('/hello/:foo/:bar', (req, res) =>{ //to play around 'trick'
-   res.json({message: 'Hello BScBest!', data: [
-       req.params.foo,
-       req.params.bar
-   ]});
-   });
-//post requesting 
-   app.post('/hello', (req, res) => {
-       res.json({result: 'Post was sent', data: req.body});
-   });
+// app.get('/hello/:foo/:bar', (req, res) =>{ //to play around 'trick'
+//    res.json({message: 'Hello BScBest!', data: [
+//        req.params.foo,
+//        req.params.bar
+//    ]});
+//    });
+// //post requesting 
+//    app.post('/hello', (req, res) => {
+//        res.json({result: 'Post was sent', data: req.body});
+//    });
 // //use the below one 
 // app.get('/hello', (req, res) =>{
 //    res.json({message: 'Hello BScBest!'}); //json file ??!
