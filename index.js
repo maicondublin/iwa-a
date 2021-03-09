@@ -9,12 +9,17 @@ var app = express();
 var port = 8000;
 
 app.use(bodyParser.json()) //json and parser 
-
+app.use(logger('tiny'));
+//end point line 14 
 app.get('/hello/:foo/:bar', (req, res) =>{ //to play around 'trick'
    res.json({message: 'Hello BScBest!', data: [
        req.params.foo,
        req.params.bar
    ]});
+   });
+//post requesting 
+   app.post('/hello', (req, res) => {
+       res.json({result: 'Post was sent', data: req.body});
    });
 // //use the below one 
 // app.get('/hello', (req, res) =>{
