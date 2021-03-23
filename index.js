@@ -4,6 +4,7 @@ logger = require('morgan'),
 cors = require('cors'),
 express = require('express'), //our router 
 bodyParser = require('body-parser');
+mongoose = require('mongoose');
 
 var app = express();
 var port = 8000;
@@ -54,22 +55,40 @@ app.use(require('./routes'));// routes on the routes.js file
 //async 'method'
 // let users = []; //name of users will be stroed here
 // let email = [];
-let chars = [];
-(async function getNames(){
-    try{
-   // const {data} = await axios.get("https://jsonplaceholder.typicode.com/users"); end point 
-        const {data} = await axios.get("https://swapi.dev/api/people/");
-        // users = data.map(user=>user.name);
-        // emails = data.map(email=>email.email);
-        chars = data.results.map(char=>char.name);
-        // console.log(users)
-        // console.log(emails)
-        console.log(chars)
-    } catch(error){
-        console.log(error)
-    }
-})()
+// let chars = [];
+// (async function getNames(){
+//     try{
+//    // const {data} = await axios.get("https://jsonplaceholder.typicode.com/users"); end point 
+//         const {data} = await axios.get("https://swapi.dev/api/people/");
+//         // users = data.map(user=>user.name);
+//         // emails = data.map(email=>email.email);
+//         chars = data.results.map(char=>char.name);
+//         // console.log(users)
+//         // console.log(emails)
+//         console.log(chars)
+//     } catch(error){
+//         console.log(error)
+//     }
+// })()
 
-app.listen(port, function(err){
-    console.log('Listining on port:' + port)
-});
+//connected to mongoDb - mongoose
+// mongoose.connect('mongodb://localhost/test');
+
+// mongoose.connection.on('error', (err) => { 
+//     console.log('Mongodb Error: ', err); 
+//     process.exit();
+// });
+// mongoose.connection.on('connected', () => { 
+//     console.log('MongoDB is successfully connected');
+// });
+
+// app.listen(port, function(err){
+//     console.log('Listining on port:' + port)
+// });
+
+//connected to mongoDbAtlas
+const dbURI = "mongodb://localhost/test";
+
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+        .then((result) => console.log('connected to db'))
+        .catch((err) => console.log(err));
