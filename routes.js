@@ -12,6 +12,10 @@ router.post('/hello', itemCtrl.postWorld);
 router.post('/users', userCtrl.createUser);
 router.get('/users', userCtrl.getUsers);
 
+router.get('/users/:id', userCtrl.getUser); //get user by id
+router.put('/users/:id', userCtrl.updateUser);//update
+router.delete('/users/:id', userCtrl.deleteUser);//delete
+
 //routing line 17 to 24 
 //end point line 14 
 //changed app to router below.

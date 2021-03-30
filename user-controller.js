@@ -19,3 +19,34 @@ exports.getUsers = function(req, res) {
     res.json(users);
   }); 
 };
+
+//user id to get 
+exports.getUser = function(req, res) {
+  User.findOne({_id: req.params.id}, req.body,{new: true},
+    function (err, users) {
+    if (err) {
+      res.status(400).json(err); 
+    } 
+    res.json(users);
+  }); 
+};
+//update user
+exports.updateUser = function(req, res) {
+  User.findOneAndUpdate({_id: req.params.id}, req.body,{new: true},
+    function (err, users) {
+    if (err) {
+      res.status(400).json(err); 
+    } 
+    res.json(users);
+  }); 
+};
+//delete user 
+exports.deleteUser = function(req, res) {
+  User.findByIdAndRemove({_id: req.params.id},
+    function (err, users) {
+    if (err) {
+      res.status(400).json(err); 
+    } 
+    res.json(users);
+  }); 
+};

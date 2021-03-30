@@ -82,9 +82,9 @@ app.use(require('./routes'));// routes on the routes.js file
 //     console.log('MongoDB is successfully connected');
 // });
 
-// app.listen(port, function(err){
-//     console.log('Listining on port:' + port)
-// });
+app.listen(port, function(err){
+    console.log('Listining on port:' + port)
+});
 
 //connected to mongoDbAtlas
 const dbURI = "mongodb://localhost/test";
