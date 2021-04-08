@@ -1,5 +1,5 @@
 const http = require('http'),
-// axios = require('axios'),
+//axios = require('axios'),
 logger = require('morgan'), //would be our logger 
 cors = require('cors'), //allows to do our crossserver on the browser.note has to share same URL.
 express = require('express'), //our router 
@@ -13,6 +13,19 @@ var port = 8000; //by default run on port 80 too.
 app.use(bodyParser.json()) //json and parser 
 app.use(logger('tiny')); // logger for "morgan" i think
 app.use(require('./routes'));// routes on the routes.js file
+
+app.listen(port, function(err){
+    console.log('Listining on port:' + port)
+});
+
+//connected to mongoDbAtlas
+const dbURI = "mongodb://localhost/test";
+
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+        .then((result) => console.log('connected to db'))
+        .catch((err) => console.log(err));
+
+
 //routing line 17 to 24 
 //end point line 14 
 // app.get('/hello/:foo/:bar', (req, res) =>{ //to play around 'trick'
@@ -81,14 +94,3 @@ app.use(require('./routes'));// routes on the routes.js file
 // mongoose.connection.on('connected', () => { 
 //     console.log('MongoDB is successfully connected');
 // });
-
-app.listen(port, function(err){
-    console.log('Listining on port:' + port)
-});
-
-//connected to mongoDbAtlas
-const dbURI = "mongodb://localhost/test";
-
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-        .then((result) => console.log('connected to db'))
-        .catch((err) => console.log(err));
