@@ -1,13 +1,13 @@
 const http = require('http'),
-axios = require('axios'),
-logger = require('morgan'),
-cors = require('cors'),
+// axios = require('axios'),
+logger = require('morgan'), //would be our logger 
+cors = require('cors'), //allows to do our crossserver on the browser.note has to share same URL.
 express = require('express'), //our router 
 bodyParser = require('body-parser');
-mongoose = require('mongoose');
+mongoose = require('mongoose'); //allows us to connect to DB.
 
 var app = express();
-var port = 8000;
+var port = 8000; //by default run on port 80 too.
 
 //middleware line 12/13
 app.use(bodyParser.json()) //json and parser 

@@ -1,20 +1,26 @@
 const express = require('express'), //using express for routing
 router = express.Router();
 
-var itemCtrl = require('./item-controller'),
+var 
+// itemCtrl = require('./item-controller'),
 userCtrl = require('./user-controller');
 
-router.get('/hello', itemCtrl.getWorld);
-
-router.get('/hello/:foo/bar', itemCtrl.getWorldParams);
-router.post('/hello', itemCtrl.postWorld);
+// router.get('/hello', itemCtrl.getWorld);
+// router.get('/hello/:foo/bar', itemCtrl.getWorldParams);
+// router.post('/hello', itemCtrl.postWorld);
 
 router.post('/users', userCtrl.createUser);
 router.get('/users', userCtrl.getUsers);
-
 router.get('/users/:id', userCtrl.getUser); //get user by id
 router.put('/users/:id', userCtrl.updateUser);//update
 router.delete('/users/:id', userCtrl.deleteUser);//delete
+
+module.exports.UPLOAD_PATH = 'uploads';
+var upload = multer({dest: module.exports.UPLOAD_PATH});
+var imageCtrl = require('./image-controller');
+
+
+module.exports = router;
 
 //routing line 17 to 24 
 //end point line 14 
@@ -30,4 +36,3 @@ router.delete('/users/:id', userCtrl.deleteUser);//delete
 //        res.json({result: 'Post was sent', data: req.body});
 //    });
 // //"tricky" 
-module.exports = router;
