@@ -4,9 +4,9 @@ var imageSchema = new nongoose.imageSchema({
     filename: String,
     originalName: String,
     desc: String,
-   // created: Date dont need thid because of the timestamps
+    // created: Date dont need thid because of the timestamps
 },
-{timestamps: true}
+    { timestamps: true }
 );
 
 module.exports = nongoose.model('Image', imageSchema);
