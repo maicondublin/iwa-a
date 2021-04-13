@@ -18,18 +18,31 @@ exports.uploadImage = function (req, res) {
 };
 
 exports.getImages = function (req, res) {
-    Image.find({}, '_v')
+    Image.find({}, '-_v')
         .lean()
-        .exec((err, images => {
+        .exec((err, images) => {
             if (err) {
                 return res.sendStatus(400);
             }
             for (let i = 0; i < images.length; i++) {
-                var img = images(i);
+                var img = images[i];
                 img.url = req.protocol + '://' + req.get('host') + '/images/' +
                     img._id;
             }
             res.json(images);
-        }));
+        });
 
+};
+//below new piece of code 
+exports.getImage = function(req, res) {
+    let imgId = req.params.id;
+
+    Image.findById(imgId, (err, image) => {
+        if (err) {
+            return res.sendStatus(400);
+        }
+
+        res.setHeader('Content-Type', 'image/jpeg');
+        fs.createReadStream(path.join(UPLOAD_PATH, image.filename)).pipe(res);
+    });
 };
